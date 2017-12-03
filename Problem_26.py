@@ -22,29 +22,28 @@ class Solution:
         :rtype: int
         """
         unique_len = 0
-        previous_value = 0
-        i = 0
-        while i < len(nums):
-        	if previous_value != nums[i]:
-        		unique_len += 1
-        		previous_value = nums[i]
-        	else:
-        		nums.pop(i)
-        	i += 1
+        previous_value = None
+
+        for i in range(len(nums)):
+            if previous_value != nums[i]:
+                nums[unique_len] = nums[i]
+                unique_len += 1
+                previous_value = nums[i]
+        
         return unique_len
 
-test1 = [1]
+test1 = [1, 1, 2]
 test2 = [1, 2, 3, 4]
 test3 = [1, 1, 1, 1]
 test4 = [1, 2, 2, 3]
 test5 = [1, 2, 2, 2]
-test6 = [2, 2, 2, 1]
+
 
 sol = Solution()
-print(sol.removeDuplicates(test1) == 1)
+print(sol.removeDuplicates(test1) == 2)
 print(sol.removeDuplicates(test2) == 4)
 print(sol.removeDuplicates(test3) == 1)
 print(sol.removeDuplicates(test4) == 3)
 print(sol.removeDuplicates(test5) == 2)
-print(sol.removeDuplicates(test6) == 2)
+
  
