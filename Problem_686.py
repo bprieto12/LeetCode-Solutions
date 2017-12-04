@@ -25,21 +25,13 @@ class Solution:
         :type B: str
         :rtype: int
         """
-        # This solution works, but it times out for large B values
         multiplier = 1
         max_multiplier = math.ceil(len(B) / len(A)) + 1
 
-        if len(A) < len(B):
-                multiplier = math.ceil(len(B) / len(A))
-                A = A * multiplier
-
         while multiplier <= max_multiplier:
-            last_element = len(A) - len(B)
-            for j in range(0, last_element + 1):
-                if A[j:j + len(B)] == B:
-                    return multiplier
+            if B in (A * multiplier):
+                return multiplier
             multiplier += 1
-            A = A * multiplier
 
         return -1
                 
