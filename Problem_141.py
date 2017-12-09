@@ -21,19 +21,15 @@ class Solution(object):
         :type head: ListNode
         :rtype: bool
         """
-        # Works but it's slow O(N^2)
-        fixed_node = head
-        
-        while fixed_node != None:
-            back_pointer = head
-            while back_pointer != fixed_node:
-                if fixed_node.next == back_pointer:
-                    return True
-                back_pointer = back_pointer.next
-            if fixed_node.next == back_pointer:
-                return True
-            fixed_node = fixed_node.next        
-        return False
+        node_cache = {}
 
+        moving_head = head
+        while moving_head != None:
+            if moving_head in node_cache:
+                return True
+            else:
+                node_cache[moving_head] = 1
+            moving_head = moving_head.next
+        return False
 
 
